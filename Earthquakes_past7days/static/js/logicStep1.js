@@ -19,21 +19,18 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // create a base layer that holds both maps.
 let baseMaps = {
-    Streets: streets,
-    Satellite: satelliteStreets 
+    "Streets": streets,
+    "Satellite": satelliteStreets 
 };
 
 let map = L.map('mapid', {
-    center: [43.7, -79.3],
-    zoom: 11,
-    layers: [satelliteStreets]
+    center: [39.5, -98.5],
+    zoom: 3,
+    layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
-
-// Accessing the Toronto neighborhoods GeoJSON URL.
-let torontoHoods = "https://raw.githubusercontent.com/Baylex/Mapping_Earthquakes/main/torontoNeighborhoods.json";
 
 // Create a style for the lines.
 let myStyle = {
@@ -45,13 +42,13 @@ let myStyle = {
 }
 
 // Grabbing our GeoJSON data
-d3.json(torontoHoods).then(function(data) {
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
     
     // Creating a GeoJSON layer with the retrieved data.
     L.geoJson(data, {
         style: myStyle,
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h2>Neighborhood: " + feature.properties.AREA_NAME + "</h2>");
+            layer.bindPopup("<h2>Location: " + feature.properties.place + "</h2> <hr> <h3>Magnitude: " + feature.properties.mag + "<?h3>");
         }
     }).addTo(map); 
 });
