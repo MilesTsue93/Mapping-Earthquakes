@@ -1,6 +1,6 @@
 # Mapping-Earthquakes
 
-![map](https://github.com/Kyle2Miles93/Mapping-Earthquakes/blob/main/Earthquake_Map.png)
+![map](https://github.com/Kyle2Miles93/Mapping-Earthquakes/blob/main/Resources/Earthquake_Map.png)
 
 Analyzed GeoJSON earquake data and created maps using Leaflet.
 
